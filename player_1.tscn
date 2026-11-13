@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://cbt5svilwny0u"]
+
+[ext_resource type="Script" uid="uid://bmiflwoy2l5pb" path="res://player_1.gd" id="1_buxg0"]
+[ext_resource type="Texture2D" uid="uid://buab2unag5txh" path="res://Sprite Pack 8/Sprite Pack 8/7 - Barry Cherry/Idle_Blink (32 x 32).png" id="2_6736r"]
+[ext_resource type="Texture2D" uid="uid://6xyh6ru72n16" path="res://Sprite Pack 8/Sprite Pack 8/7 - Barry Cherry/Running (32 x 32).png" id="3_buxg0"]
+[ext_resource type="Texture2D" uid="uid://cs3lrnvp6ghyn" path="res://Sprite Pack 8/Sprite Pack 8/7 - Barry Cherry/Landing (32 x 32).png" id="3_i66ns"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6736r"]
+atlas = ExtResource("3_buxg0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i66ns"]
+atlas = ExtResource("3_buxg0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq3ur"]
+atlas = ExtResource("3_buxg0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txlgs"]
+atlas = ExtResource("3_buxg0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkxmd"]
+atlas = ExtResource("3_buxg0")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf2bl"]
+atlas = ExtResource("3_buxg0")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb6rn"]
+atlas = ExtResource("3_i66ns")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hffw0"]
+atlas = ExtResource("3_i66ns")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qpmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6736r")
+}],
+"loop": 1,
+"name": &"andand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6736r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i66ns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lq3ur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txlgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkxmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gf2bl")
+}],
+"loop": 1,
+"name": &"andando",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb6rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hffw0")
+}],
+"loop": 1,
+"name": &"pulando",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3yev8"]
+radius = 5.0
+height = 16.0
+
+[node name="player1" type="CharacterBody2D" unique_id=461539522]
+position = Vector2(8, -1)
+script = ExtResource("1_buxg0")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=338639690]
+position = Vector2(2, 4)
+sprite_frames = SubResource("SpriteFrames_1qpmd")
+animation = &"andando"
+autoplay = "andando"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1774215126]
+position = Vector2(0, 11)
+shape = SubResource("CapsuleShape2D_3yev8")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1159151192]

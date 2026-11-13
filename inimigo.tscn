@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://oicfbp8m8k2x"]
+
+[ext_resource type="Script" uid="uid://dtaqblyj0ggl4" path="res://inimigo.gd" id="1_0b8xr"]
+[ext_resource type="Texture2D" uid="uid://df6j2dxh3tgn7" path="res://Sprite Pack 2/Sprite Pack 2/3 - Octi/Idle_&_Movement (16 x 16).png" id="1_030df"]
+[ext_resource type="PackedScene" uid="uid://rtsjmbdm72sm" path="res://dano_inimigo.tscn" id="3_g45jm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b8xr"]
+atlas = ExtResource("1_030df")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g45jm"]
+atlas = ExtResource("1_030df")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_030df"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b8xr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g45jm")
+}],
+"loop": 1,
+"name": &"caminhar_1",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"morrer",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enrbn"]
+radius = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qpmd"]
+size = Vector2(14, 1)
+
+[node name="inimigo" type="CharacterBody2D" unique_id=125096835]
+position = Vector2(-70, -25)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_0b8xr")
+
+[node name="animacao" type="AnimatedSprite2D" parent="." unique_id=2137152083]
+position = Vector2(-9.536743e-07, 9.999998)
+scale = Vector2(3.125, 3.4999998)
+sprite_frames = SubResource("SpriteFrames_030df")
+animation = &"caminhar_1"
+autoplay = "caminhar_1"
+
+[node name="colisao" type="CollisionShape2D" parent="." unique_id=2024439371]
+position = Vector2(-2, 18)
+shape = SubResource("CircleShape2D_enrbn")
+
+[node name="batevolta" type="RayCast2D" parent="." unique_id=1625544298]
+position = Vector2(-2, 16)
+target_position = Vector2(-22, 0)
+
+[node name="dano_inimigo" parent="." unique_id=1638308222 instance=ExtResource("3_g45jm")]
+
+[node name="colisao_dano" type="CollisionShape2D" parent="dano_inimigo" unique_id=1309405833]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_1qpmd")
+
+[node name="detectarChao" type="RayCast2D" parent="." unique_id=1634444093]
+position = Vector2(0, 24)
+target_position = Vector2(0, 20)
